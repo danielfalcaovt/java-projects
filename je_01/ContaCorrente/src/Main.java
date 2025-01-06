@@ -24,7 +24,7 @@ public class Main {
         System.out.println(conta.client);
         conta.sacar(10);
 
-        conta.transferirParaContaCorrente(2, contaVendedor);
+        conta.transferirParaContaCorrente(2.0, contaVendedor);
 
         conta.cancelarConta("porque sim");
         conta.cancelarConta("porque sim");
