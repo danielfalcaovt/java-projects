@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FirstJavaProgram/FirstJavaProgram.iml" filepath="$PROJECT_DIR$/FirstJavaProgram/FirstJavaProgram.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/java-projects.iml" filepath="$PROJECT_DIR$/.idea/java-projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/je_01/je_01.iml" filepath="$PROJECT_DIR$/je_01/je_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/je_02/je_02.iml" filepath="$PROJECT_DIR$/je_02/je_02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/je_03/je_03.iml" filepath="$PROJECT_DIR$/je_03/je_03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/je_04/je_04.iml" filepath="$PROJECT_DIR$/je_04/je_04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/je_05/je_05.iml" filepath="$PROJECT_DIR$/je_05/je_05.iml" />
+      <module fileurl="file://$PROJECT_DIR$/je_06/je_06.iml" filepath="$PROJECT_DIR$/je_06/je_06.iml" />
+      <module fileurl="file://$PROJECT_DIR$/je_07/je_07.iml" filepath="$PROJECT_DIR$/je_07/je_07.iml" />
+      <module fileurl="file://$PROJECT_DIR$/je_08/je_08.iml" filepath="$PROJECT_DIR$/je_08/je_08.iml" />
+      <module fileurl="file://$PROJECT_DIR$/je_09/je_09.iml" filepath="$PROJECT_DIR$/je_09/je_09.iml" />
+    </modules>
+  </component>
+</project>
