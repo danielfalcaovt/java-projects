@@ -1,0 +1,12 @@
+services:
+  postgres:
+    container_name: db_postgres
+    image: postgres
+    ports: 
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=brbr109br
+      - POSTGRES_DB=rh_gestao_vagas
+
+  
