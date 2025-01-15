@@ -24,7 +24,7 @@ public class ApplicantController {
     @Autowired(required = true)
     private CreateApplicant createApplicant;
 
-    @PostMapping()
+    @PostMapping("/create")
     public ResponseEntity<Applicant> create(@Valid @RequestBody() Applicant applicantDTO) throws EmailAlreadyExistsException {
         Optional<Applicant> applicant = this.getApplicant.get(applicantDTO.getEmail());
         if (applicant.isPresent()) {
