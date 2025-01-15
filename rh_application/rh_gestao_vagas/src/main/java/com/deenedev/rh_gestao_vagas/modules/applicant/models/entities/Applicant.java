@@ -26,7 +26,7 @@ public class Applicant {
     @Length(min = 11, max = 11)
     @Pattern(regexp = "[0-9]{11,11}", message = "O CPF deve estar no formato correto.")
     @NotNull()
-    private String CPF;
+    private String cpf;
     @Email(message = "O e-mail deve estar no formato correto.")
     private String email;
     @Length(min = 8, max = 100)

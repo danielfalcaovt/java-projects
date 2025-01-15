@@ -32,7 +32,7 @@ public class Company {
     @Pattern(regexp = "[0-9]{14,14}", message = "O CNPJ deve estar no formato correto.")
     @NotNull()
     @Column(name = "cnpj")
-    public String CNPJ;
+    public String cnpj;
     
     @OneToMany()
     public List<Job> jobs;
