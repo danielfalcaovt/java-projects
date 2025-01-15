@@ -23,15 +23,8 @@ public class CompanyController {
     @Autowired
     private CreateCompany createCompany;
 
-    @Autowired
-    private GetCompanyByEmail getCompanyByEmail;
-
     @PostMapping("/create")
     public ResponseEntity<Company> create(@Valid @RequestBody() Company company) throws EmailAlreadyExistsException {
-        Optional<Company> companyFound = this.getCompanyByEmail.getByEmail(company.email);
-        if (companyFound.isPresent()) {
-            throw new EmailAlreadyExistsException();
-        }
         return ResponseEntity.ok().body(this.createCompany.create(company));
     }
 }
