@@ -11,4 +11,6 @@ import com.deenedev.rh_gestao_vagas.modules.applicant.models.entities.Applicant;
 public interface ApplicantRepository extends JpaRepository<Applicant, UUID> {
     @Query(value = "SELECT 1 FROM Applicant a WHERE a.email = :email")
     Optional<Applicant> findOneByEmail(String email);
+
+    Optional<Applicant> findByEmail(String email);
 }

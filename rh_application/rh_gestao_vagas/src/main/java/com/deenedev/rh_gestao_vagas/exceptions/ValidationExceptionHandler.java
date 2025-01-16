@@ -11,6 +11,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import jakarta.security.auth.message.AuthException;
+
 @ControllerAdvice
 public class ValidationExceptionHandler {
 
@@ -33,5 +35,24 @@ public class ValidationExceptionHandler {
     public ResponseEntity<ErrorMessageDTO> handleFoundUserException(EmailAlreadyExistsException ex) {
         ErrorMessageDTO errorM = new ErrorMessageDTO(ex.getMessage(), "email");
         return new ResponseEntity<>(errorM, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(exception = NotFoundException.class)
+    public ResponseEntity<ErrorMessageDTO> handleFoundUserException(NotFoundException ex) {
+        ErrorMessageDTO errorM = new ErrorMessageDTO(ex.getMessage(), "email");
+        return new ResponseEntity<>(errorM, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(exception = AuthException.class)
+    public ResponseEntity<ErrorMessageDTO> handleUnauthorizedException(AuthException ex) {
+        ErrorMessageDTO errorM = new ErrorMessageDTO(ex.getMessage(), "email/password");
+        return new ResponseEntity<>(errorM, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(exception = RuntimeException.class)
+    public ResponseEntity<ErrorMessageDTO> handleInternalServerError(RuntimeException ex) {
+        ErrorMessageDTO errorM = new ErrorMessageDTO("Internal Server Error", "internal");
+        ex.printStackTrace();
+        return new ResponseEntity<>(errorM, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
