@@ -40,7 +40,8 @@ public class Job {
     @JoinColumn(name = "company_id", insertable = false, updatable = false)
     public Company company;
 
-    @Column(name = "company_id")
+    @NotNull()
+    @Column(name = "company_id", nullable = false)
     public UUID companyId;
 
     @CreationTimestamp
