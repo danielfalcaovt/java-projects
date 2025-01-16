@@ -16,7 +16,6 @@ public class DbGetApplicantByEmail implements GetApplicantByEmail {
 
     @Override
     public Optional<Applicant> get(String email) {
-        Optional<Applicant> applicant = this.applicantRepository.findOneByEmail(email);
-        return applicant;
+        return this.applicantRepository.findOneByEmail(email);
     }
 }
