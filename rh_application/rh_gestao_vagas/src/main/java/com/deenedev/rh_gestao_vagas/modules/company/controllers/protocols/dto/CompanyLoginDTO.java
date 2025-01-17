@@ -1,4 +1,4 @@
-package com.deenedev.rh_gestao_vagas.modules.company.models.dto;
+package com.deenedev.rh_gestao_vagas.modules.company.controllers.protocols.dto;
 
 import org.hibernate.validator.constraints.Length;
 

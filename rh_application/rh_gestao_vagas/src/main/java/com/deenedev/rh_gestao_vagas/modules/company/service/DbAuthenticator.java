@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.deenedev.rh_gestao_vagas.modules.company.models.dto.CompanyLoginDTO;
+import com.deenedev.rh_gestao_vagas.modules.company.controllers.protocols.dto.CompanyLoginDTO;
 import com.deenedev.rh_gestao_vagas.modules.company.models.entities.Company;
 import com.deenedev.rh_gestao_vagas.modules.company.protocols.usecases.CompanyAuthenticator;
 import com.deenedev.rh_gestao_vagas.modules.company.repositories.CompanyRepository;

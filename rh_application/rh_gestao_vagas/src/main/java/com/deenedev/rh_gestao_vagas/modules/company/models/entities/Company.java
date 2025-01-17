@@ -13,15 +13,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity()
+@Builder
 public class Company {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Id
@@ -33,14 +33,13 @@ public class Company {
     @NotNull()
     @Column(name = "cnpj")
     public String cnpj;
-    
-    @OneToMany()
-    public List<Job> jobs;
 
     @Email(message = "O e-mail deve estar no formato correto.")
+    @NotNull()
     public String email;
 
     @Length(min = 8, max = 100)
+    @NotNull()
     public String password;
 
     @CreationTimestamp

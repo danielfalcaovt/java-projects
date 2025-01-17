@@ -28,10 +28,10 @@ public class DbAuthApplicant implements ApplicantAuthenticator {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
-    public String auth(ApplicantLoginDTO applicantAuthDTO) throws AuthException, RuntimeException {
-        Applicant applicant = this.applicantRepository.findByEmail(applicantAuthDTO.getEmail()).orElseThrow(() -> new AuthException());
+    public String auth(ApplicantLoginDTO loginDTO) throws AuthException, RuntimeException {
+        Applicant applicant = this.applicantRepository.findByEmail(loginDTO.getEmail()).orElseThrow(() -> new AuthException());
 
-        if (!passwordEncoder.matches(applicantAuthDTO.getPassword(), applicant.getPassword())) {
+        if (!passwordEncoder.matches(loginDTO.getPassword(), applicant.getPassword())) {
             throw new AuthException();
         }
 

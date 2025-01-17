@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.deenedev.rh_gestao_vagas.exceptions.EmailAlreadyExistsException;
+import com.deenedev.rh_gestao_vagas.exceptions.validation_exceptions.EmailAlreadyExistsException;
 import com.deenedev.rh_gestao_vagas.modules.company.models.entities.Company;
 import com.deenedev.rh_gestao_vagas.modules.company.protocols.usecases.CreateCompany;
 import com.deenedev.rh_gestao_vagas.modules.company.repositories.CompanyRepository;
