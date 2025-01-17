@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.deenedev.rh_gestao_vagas.exceptions.EmailAlreadyExistsException;
+import com.deenedev.rh_gestao_vagas.exceptions.validation_exceptions.EmailAlreadyExistsException;
 import com.deenedev.rh_gestao_vagas.modules.applicant.models.entities.Applicant;
-import com.deenedev.rh_gestao_vagas.modules.applicant.protocols.dto.ApplicantAuthDTO;
-import com.deenedev.rh_gestao_vagas.modules.applicant.protocols.usecases.AuthApplicant;
+import com.deenedev.rh_gestao_vagas.modules.applicant.protocols.dto.ApplicantLoginDTO;
+import com.deenedev.rh_gestao_vagas.modules.applicant.protocols.usecases.ApplicantAuthenticator;
 import com.deenedev.rh_gestao_vagas.modules.applicant.protocols.usecases.CreateApplicant;
 import com.deenedev.rh_gestao_vagas.modules.applicant.protocols.usecases.GetApplicantByEmail;
 
@@ -27,7 +27,7 @@ public class ApplicantController {
     @Autowired
     private CreateApplicant createApplicant;
     @Autowired
-    private AuthApplicant dbAuthApplicant;
+    private ApplicantAuthenticator dbAuthApplicant;
 
     @PostMapping("/create")
     public ResponseEntity<Applicant> create(@Valid @RequestBody() Applicant applicantDTO) throws EmailAlreadyExistsException {
@@ -39,7 +39,7 @@ public class ApplicantController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody() ApplicantAuthDTO applicantDTO) throws AuthException {
+    public ResponseEntity<String> login(@Valid @RequestBody() ApplicantLoginDTO applicantDTO) throws AuthException {
         return ResponseEntity.ok().body(this.dbAuthApplicant.auth(applicantDTO));
     }
 }
