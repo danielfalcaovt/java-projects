@@ -1,4 +1,4 @@
-package com.deenedev.rh_gestao_vagas.exceptions;
+package com.deenedev.rh_gestao_vagas.exceptions.handler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.deenedev.rh_gestao_vagas.exceptions.protocols.ErrorMessageDTO;
+import com.deenedev.rh_gestao_vagas.exceptions.validation_exceptions.EmailAlreadyExistsException;
+import com.deenedev.rh_gestao_vagas.exceptions.validation_exceptions.NotFoundException;
 
 import jakarta.security.auth.message.AuthException;
 
@@ -45,9 +49,11 @@ public class ValidationExceptionHandler {
 
     @ExceptionHandler(exception = AuthException.class)
     public ResponseEntity<ErrorMessageDTO> handleUnauthorizedException(AuthException ex) {
-        ErrorMessageDTO errorM = new ErrorMessageDTO(ex.getMessage(), "email/password");
+        ErrorMessageDTO errorM = new ErrorMessageDTO(ex.getMessage() == null ? "Email/password está incorreto." : ex.getMessage(), "email/password");
         return new ResponseEntity<>(errorM, HttpStatus.UNAUTHORIZED);
     }
+
+    // All ExceptionHandler need to be at final of class
 
     @ExceptionHandler(exception = RuntimeException.class)
     public ResponseEntity<ErrorMessageDTO> handleInternalServerError(RuntimeException ex) {
@@ -55,4 +61,5 @@ public class ValidationExceptionHandler {
         ex.printStackTrace();
         return new ResponseEntity<>(errorM, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
 }

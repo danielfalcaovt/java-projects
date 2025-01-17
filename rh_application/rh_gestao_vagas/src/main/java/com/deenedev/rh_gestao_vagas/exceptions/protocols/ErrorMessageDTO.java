@@ -1,4 +1,4 @@
-package com.deenedev.rh_gestao_vagas.exceptions;
+package com.deenedev.rh_gestao_vagas.exceptions.protocols;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

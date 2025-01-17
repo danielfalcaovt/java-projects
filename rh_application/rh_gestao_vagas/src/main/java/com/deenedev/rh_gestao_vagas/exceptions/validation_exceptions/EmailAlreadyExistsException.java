@@ -1,4 +1,4 @@
-package com.deenedev.rh_gestao_vagas.exceptions;
+package com.deenedev.rh_gestao_vagas.exceptions.validation_exceptions;
 
 public class EmailAlreadyExistsException extends RuntimeException {
     public EmailAlreadyExistsException() {
