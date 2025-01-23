@@ -1,12 +1,11 @@
 package com.deenedev.rh_gestao_vagas.modules.company.models.entities;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 
-import com.deenedev.rh_gestao_vagas.modules.jobs.model.Job;
+import com.deenedev.rh_gestao_vagas.modules.applicant.models.entities.Applicant;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,16 +15,21 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Data
 @Entity()
-@Builder
+@Data
 public class Company {
+    
     @GeneratedValue(strategy = GenerationType.UUID)
     @Id
     public UUID id;
+
+    @CreationTimestamp
+    @Column(name = "created_at")
+    public String createdAt;
+
     @NotNull()
     public String name;
 
@@ -42,7 +46,13 @@ public class Company {
     @NotNull()
     public String password;
 
-    @CreationTimestamp
-    @Column(name = "created_at")
-    public String createdAt;
+    
+    public static Company build(String name,String cnpj, String email,String password) {
+        Company company = new Company();
+        company.setName(name);
+        company.setCnpj(cnpj);
+        company.setEmail(email);
+        company.setPassword(password);
+        return company;
+    }
 }

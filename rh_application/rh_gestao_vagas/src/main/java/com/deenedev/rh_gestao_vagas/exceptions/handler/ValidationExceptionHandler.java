@@ -1,5 +1,6 @@
 package com.deenedev.rh_gestao_vagas.exceptions.handler;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,12 @@ public class ValidationExceptionHandler {
     public ResponseEntity<ErrorMessageDTO> handleUnauthorizedException(AuthException ex) {
         ErrorMessageDTO errorM = new ErrorMessageDTO(ex.getMessage() == null ? "Email/password está incorreto." : ex.getMessage(), "email/password");
         return new ResponseEntity<>(errorM, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(exception = InvalidParameterException.class)
+    public ResponseEntity<ErrorMessageDTO> handleInvalidParamException(InvalidParameterException ex) {
+        ErrorMessageDTO errorM = new ErrorMessageDTO("As senhas devem ser iguais.", "confirmPassword");
+        return new ResponseEntity<>(errorM, HttpStatus.BAD_REQUEST);
     }
 
     // All ExceptionHandler need to be at final of class

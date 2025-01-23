@@ -6,6 +6,7 @@ import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,16 +27,12 @@ public class JobController {
     private CreateJob createJob;
 
     @PostMapping("/create")
+    @PreAuthorize("hasRole('COMPANY')")
     public ResponseEntity<Job> create(@Valid @RequestBody CreateJobDTO job, HttpServletRequest request)
             throws ConstraintViolationException, IllegalArgumentException {
         var companyId = request.getAttribute("company_id");
-        Job createdJob = Job.builder()
-                .level(job.getLevel())
-                .role(job.getRole())
-                .name(job.getName())
-                .companyId(UUID.fromString(companyId.toString()))
-                .description(job.getDescription())
-                .build();
+        Job createdJob = CreateJobDTO.convert(job);
+        createdJob.setCompanyId(UUID.fromString((String) companyId));
         return ResponseEntity.ok().body(this.createJob.create(createdJob));
     }
 }

@@ -2,6 +2,7 @@ package com.deenedev.rh_gestao_vagas.modules.jobs.model;
 
 import java.util.UUID;
 
+import com.deenedev.rh_gestao_vagas.modules.jobs.controller.protocols.dto.CreateJobDTO;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 
@@ -20,35 +21,44 @@ import lombok.Data;
 
 @Data
 @Entity()
-@Builder
 public class Job {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Id
-    public UUID id;
+    private UUID id;
 
     @NotNull()
     @Length(min = 2, max = 100)
-    public String level;
+    private String level;
 
     @NotNull()
     @Length(min = 2, max = 255)
-    public String name;
+    private String name;
 
     @NotNull()
     @Length(min = 2, max = 100)
-    public String role;
+    private String role;
 
     @Length(min = 5, max = 255)
-    public String description;
+    private String description;
 
     @ManyToOne(targetEntity = Company.class)
     @JoinColumn(name = "company_id", insertable = false, updatable = false)
-    public Company company;
+    private Company company;
 
     @Column(name = "company_id", nullable = false)
-    public UUID companyId;
+    private UUID companyId;
 
     @CreationTimestamp
     @Column(name = "created_at")
-    public String createdAt;
+    private String createdAt;
+
+
+    public static CreateJobDTO convert(Job job) {
+        CreateJobDTO newJob = new CreateJobDTO();
+        newJob.setName(job.getName());
+        newJob.setRole(job.getRole());
+        newJob.setDescription(job.getDescription());
+        newJob.setLevel(job.getLevel());
+        return newJob;
+    }
 }

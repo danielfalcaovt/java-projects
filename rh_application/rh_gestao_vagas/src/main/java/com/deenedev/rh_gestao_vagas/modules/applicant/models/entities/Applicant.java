@@ -17,7 +17,6 @@ import lombok.Data;
 @Data
 @Entity()
 public class Applicant {
-
     @GeneratedValue(strategy = GenerationType.UUID)
     @Id
     private UUID id;
@@ -39,4 +38,15 @@ public class Applicant {
     
     @CreationTimestamp
     private String created_at;
+
+    public static Applicant build(String name,String cpf,String email,String password,String curriculum,String description) {
+        Applicant applicant = new Applicant();
+        applicant.setName(name);
+        applicant.setCpf(cpf);
+        applicant.setEmail(email);
+        applicant.setPassword(password);
+        applicant.setCurriculum(curriculum);
+        applicant.setDescription(description);
+        return applicant;
+    }
 }
